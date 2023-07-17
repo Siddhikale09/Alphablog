@@ -37,15 +37,9 @@ def update
         end
 end
 
-def delete
+def destroy
 @art = Article.find(params[:id])
-if @art.destroy
-flash[:notice] = 'Article deleted sucessfully!'
+ @art.destroy
 redirect_to articles_path
-else 
-    flash[:notice] = 'Article could not be deleted!'
-    redirect_to articles_path
 end
-end
-
 end

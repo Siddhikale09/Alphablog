@@ -12,13 +12,16 @@
 <tbody>
 <% @art.each do |article| %>
     <tr>
-    <th><%= article.id %> </th>
-    <th><%= article.title %> </th>
-    <th><%= article.description %> </th>
-    <th><%= article.created_at %> </th>
-    <th><%= article.updated_at %> </th>
-    <th> Placeholder </th>
+    <td><%= article.id %> </td>
+    <td><%= article.title %> </td>
+    <td><%= article.description %> </td>
+    <td><%= article.created_at %> </td>
+    <td><%= article.updated_at %> </td>
+    <td><%= link_to 'edit', edit_article_path(article) %> </td>
+    <td><%= link_to 'show', article_path(article) %></td>
+    <td><%= link_to 'Delete', article_path(article), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
 </tbody>
 </table>
+<%= link_to 'Create new Article', new_article_path %> | <%= link_to 'Home page', root_path %>
