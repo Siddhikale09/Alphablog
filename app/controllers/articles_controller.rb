@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
-def show
-@art = Article.find(params[:id])
+before_action :search_art, only: [:show, :edit, :update, :destroy]
+    def show
+
 end
 
 def index 
@@ -12,11 +13,11 @@ def new
 end
 
 def edit 
-    @art = Article.find(params[:id])
+
     end
 
 def create
-@art = Article.new(params.require(:article).permit(:title, :description))
+@art = Article.new(set_para)
  if @art.save
 flash[:notice] = "article successfully created!"
 redirect_to @art
@@ -28,8 +29,7 @@ end
  
 
 def update
-    @art = Article.find(params[:id])
-    if @art.update(params.require(:article).permit(:title, :description))
+    if @art.update(set_para)
         flash[:notice] = "article updated!!"
         redirect_to @art
         else
@@ -38,8 +38,16 @@ def update
 end
 
 def destroy
-@art = Article.find(params[:id])
- @art.destroy
+@art.destroy
 redirect_to articles_path
 end
 end
+
+private
+ def search_art
+    @art = Article.find(params[:id])
+ end
+
+ def set_para
+    params.require(:article).permit(:title, :description)
+ end

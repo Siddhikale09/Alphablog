@@ -1,24 +1,2 @@
 <h1>update article </h1>
-<% if @art.errors.any? %>
-<ul> <%=flash[:notice] = 'Article cannot be updated because..' %>
-<% @art.errors.full_messages.each do |messages| %>
-    <li><%= messages %></li>
-    <% end %>
-    </ul>
-    <% end %>
-<%= form_with(model: @art, local: true) do |f| %>
-    <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    </p>
-
-    <p>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-    </p>
-    <p>
-    <%= f.submit %>
-    </p>
-    <% end %>
-
-    <%= link_to 'Show all articles', articles_path %> | <%= link_to 'Home page', root_path %>
+<%= render 'form' %>
