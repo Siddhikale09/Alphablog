@@ -1,3 +1,4 @@
+<div class="container">
 <% if @art.errors.any? %>
 <ul> <%=flash[:notice] = 'Article cannot be updated because..' %>
 <% @art.errors.full_messages.each do |messages| %>
@@ -5,19 +6,30 @@
     <% end %>
     </ul>
     <% end %>
-<%= form_with(model: @art, local: true) do |f| %>
-    <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    </p>
 
-    <p>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-    </p>
-    <p>
-    <%= f.submit %>
-    </p>
+<div class="row justify-content-center">
+<div class="col-10">
+    <%= form_with(model: @art,class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+    <div class="form-group row">
+    <%= f.label :title, class: "col-2 col-form-label text-light" %>
+    <div class="col-10">
+    <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of article"  %>
+    </div>
+    </div>
+
+    <div class="form-group row"">
+    <%= f.label :description, class:"col-2 col-form-label text-light" %>
+    <div class="col-10">
+    <%= f.text_area :description , rows: 10 , cols: 98, class:"form_control shadow rounded", placeholder: "description" %>
+    </div>
+    </div>
+    <div class="form-group text-center mt-4">
+    <%= f.submit class:"btn btn-light" %>
+    </div>
     <% end %>
 
+
+    </div>
+    </div>
+    </div>
     <%= link_to 'Show all articles', articles_path %> | <%= link_to 'Home page', root_path %>
