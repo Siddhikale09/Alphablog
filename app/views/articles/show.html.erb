@@ -1,8 +1,21 @@
-<h1> The details for article with <u>ID = <%= @art.id %></u> are as follows: </h1>
-<p>
-<strong><u>TITLE </u></strong>: <%= @art.title %>
-</p>
-<p>
-<strong><u>DESCRIPTION</u></strong>: <%= @art.description %>
-</p>
-<%= link_to 'Show all articles', articles_path %> | <%= link_to 'Home page', root_path %>
+<div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+      <%= @art.id %>
+        </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= @art.title %></h5>
+      <p class="card-text"><%= @art.description %></p>
+      <%= link_to "View", articles_path, class: "btn btn-outline-success" %>
+      <%= link_to "Edit", edit_article_path(@art), class: "btn btn-outline-info" %>
+      <%= link_to "Delete", article_path(@art), class: "btn btn-outline-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    </div>
+    <div class="card-footer text-muted">
+    <small>Created <%= time_ago_in_words(@art.created_at) %> ago, 
+    edited <%= time_ago_in_words(@art.updated_at) %> ago</small>
+    </div>
+    </div>
+    </div>
+    </div>
+    
